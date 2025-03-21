@@ -1,0 +1,15 @@
+Coffee,2.50,Freshly brewed coffee,HotBeverage
+Latte,3.50,Espresso with steamed milk,HotBeverage
+Cappuccino,3.00,Espresso with milk foam,HotBeverage
+Mocha,3.75,Chocolate and espresso drink,HotBeverage
+Iced Coffee,3.00,Chilled coffee served with ice,ColdBeverage
+Iced Latte,4.00,Espresso with cold milk and ice,ColdBeverage
+Tea,2.00,Assorted hot tea,HotBeverage
+Pastry,2.75,Freshly baked croissant,Food
+Sandwich,5.00,Turkey and cheese sandwich,Food
+Bagel,2.50,Plain bagel with cream cheese,Food
+Muffin,3.00,Banana nut muffin,Food
+ToteBag,12.00,Reusable cotton tote bag,Merchandise
+Mug,8.00,Insulated coffee mug,Merchandise
+T-shirt,15.00,Coffee-themed graphic t-shirt,Merchandise
+Notebook,6.00,Small coffee-themed notebook,Merchandise
