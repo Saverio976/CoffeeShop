@@ -31,5 +31,7 @@ class Order
         return Time;
     }
 
-    public float GetDiscount() { return discount; }
+    public float GetDiscount() {
+        return discount;
+    }
 }
