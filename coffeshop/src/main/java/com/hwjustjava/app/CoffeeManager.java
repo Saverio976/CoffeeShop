@@ -8,6 +8,7 @@ class CoffeeManager
     private CustomerManager CustomersManager;
     private Menu Menus;
     private InvoiceManager Invoices;
+    private StaffManager TheStaffManager;
 
     private CoffeeManager()
     {
@@ -15,6 +16,7 @@ class CoffeeManager
         CustomersManager = new CustomerManager();
         Menus = new Menu();
         Invoices = new InvoiceManager();
+        TheStaffManager = new StaffManager(2);
     }
 
     public void Reset()
@@ -23,6 +25,7 @@ class CoffeeManager
         CustomersManager = new CustomerManager();
         Menus = new Menu();
         Invoices = new InvoiceManager();
+        TheStaffManager = new StaffManager(2);
     }
 
     public static synchronized CoffeeManager GetInstance()
@@ -32,6 +35,11 @@ class CoffeeManager
             SingleInstance = new CoffeeManager();
         }
         return SingleInstance;
+    }
+
+    public StaffManager GetStaffManager()
+    {
+        return TheStaffManager;
     }
 
     public FrontDesk GetFrontDesk()
