@@ -57,7 +57,7 @@ public class App extends Application {
 
             StringBuilder report = new StringBuilder("Coffee Shop Simulation Report\n\n");
             report.append("Number of customers: ").append(coffeeManager.GetCustomerManager().GetCustomersCount()).append("\n");
-            report.append("Number of orders: ").append(coffeeManager.GetOrderManager().GetCompletedOrders().size()).append("\n");
+            report.append("Number of orders: ").append(coffeeManager.GetFrontDesk().GetCompletedCustomerOrders().size()).append("\n");
             report.append("Total income: $").append(String.format("%.2f", coffeeManager.GetInvoiceManager().GetTotalIncome())).append("\n");
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -91,8 +91,7 @@ public class App extends Application {
             }
 
             try {
-                Customer customer = coffeeManager.GetCustomerManager().GetOrCreate(customerId);
-                currentCustomerId = customer.GetID();
+                currentCustomerId = coffeeManager.GetCustomerManager().CreateRecordCustomer(customerId);
 
                 createOrderScene();
                 primaryStage.setScene(orderScene);
@@ -107,13 +106,15 @@ public class App extends Application {
         ListView<String> orderQueueListView = new ListView<>();
         orderQueueListView.setPrefHeight(200);
 
-        List<Order> completedOrders = coffeeManager.GetOrderManager().GetCompletedOrders();
+        List<Customer> completedOrders = coffeeManager.GetFrontDesk().GetCompletedCustomerOrders();
         ObservableList<String> orderItems = FXCollections.observableArrayList();
-        for (Order order : completedOrders) {
-            try {
-                IItem item = coffeeManager.GetMenu().GetItem(order.GetItemID());
-                orderItems.add(order.GetCustomerID() + " - " + item.GetDescription());
-            } catch (UnknownItemException ex) {
+        for (Customer customerOrder : completedOrders) {
+            for (Order order : customerOrder.GetOrders()) {
+                try {
+                    IItem item = coffeeManager.GetMenu().GetItem(order.GetItemID());
+                    orderItems.add(order.GetCustomerID() + " - " + item.GetDescription());
+                } catch (UnknownItemException ex) {
+                }
             }
         }
         orderQueueListView.setItems(orderItems);
@@ -391,7 +392,7 @@ public class App extends Application {
 
         float discount = 0;
         try {
-            discount = coffeeManager.GetOrderManager().CalculateDiscount(currentCart);
+            discount = coffeeManager.GetFrontDesk().CalculateDiscount(currentCart);
         } catch (InvalidOrderException e) {
             showAlert("Error", "Error calculating discount: " + e.getMessage());
         }
@@ -439,7 +440,7 @@ public class App extends Application {
         Button completeOrderButton = new Button("Complete Order");
         completeOrderButton.setOnAction(e -> {
             try {
-                Invoice invoice = coffeeManager.GetOrderManager().CreateOrders(
+                Invoice invoice = coffeeManager.GetFrontDesk().CreateCustomerOrders(
                         currentCart, currentCustomerId, Instant.now());
 
                 showInvoiceConfirmation(invoice);
@@ -451,6 +452,8 @@ public class App extends Application {
                 primaryStage.setScene(landingScene);
 
             } catch (InvalidOrderException ex) {
+                showAlert("Error", "Failed to process order: " + ex.getMessage());
+            } catch (InvalidCustomerException ex) {
                 showAlert("Error", "Failed to process order: " + ex.getMessage());
             }
         });

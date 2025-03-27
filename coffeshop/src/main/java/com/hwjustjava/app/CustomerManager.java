@@ -2,20 +2,30 @@ package com.hwjustjava.app;
 
 class CustomerManager
 {
-    private java.util.HashMap<String, Customer> Customers;
+    private java.util.HashMap<String, java.util.List<Customer>> Customers;
 
     public CustomerManager()
     {
-        Customers = new java.util.HashMap<String, Customer>();
+        Customers = new java.util.HashMap<String, java.util.List<Customer>>();
     }
 
-    public Customer GetOrCreate(String CustomerID) throws InvalidCustomerException
+    public String CreateRecordCustomer(String CustomerID) throws InvalidCustomerException
     {
+        Customer customer = new Customer(CustomerID, new java.util.LinkedList<Order>());
         if (Customers.get(CustomerID) == null)
         {
-            Customers.put(CustomerID, new Customer(CustomerID));
+            Customers.put(CustomerID, new java.util.LinkedList<Customer>());
         }
-        return Customers.get(CustomerID);
+        return CustomerID;
+    }
+
+    public void AddCustomer(Customer customer)
+    {
+        if (Customers.get(customer.GetID()) == null)
+        {
+            Customers.put(customer.GetID(), new java.util.LinkedList<Customer>());
+        }
+        Customers.get(customer.GetID()).add(customer);
     }
 
     public int GetCustomersCount()
