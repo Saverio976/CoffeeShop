@@ -6,13 +6,15 @@ class Merchandise implements IItem
     private String Category;
     private String Description;
     private float Cost;
+    private float PreparationTime;
 
-    public Merchandise(String aID, String aDescription, float aCost)
+    public Merchandise(String aID, String aDescription, float aCost, float aPreparationTime)
     {
         Category = "Merchandise";
         ID = Category + "." + aID;
         Description = aDescription;
         Cost = aCost;
+        PreparationTime = aPreparationTime;
     }
 
     public String GetID()
@@ -33,5 +35,10 @@ class Merchandise implements IItem
     public float GetCost()
     {
         return Cost;
+    }
+
+    public float GetPreparationTime()
+    {
+        return PreparationTime;
     }
 }

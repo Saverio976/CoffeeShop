@@ -5,6 +5,7 @@ class Staff extends Thread
     String id;
     Customer currentCustomer = null;
     Order currentOrder = null;
+    Invoice currentInvoice = null;
 
     public Staff(String aId)
     {
@@ -15,19 +16,29 @@ class Staff extends Thread
     public void run()
     {
         synchronized (this.currentCustomer) {
-            this.currentCustomer = null;// TODO: get customer from front desk
+            this.currentCustomer = CoffeeManager.GetInstance().GetFrontDesk().GetWaitingCustomer();
         }
         while (this.currentCustomer != null) {
-            Order[] orders = new Order[10];// TODO: get orders from customer
+            java.util.List<Order> orders = this.currentCustomer.GetOrders();
+            synchronized (this.currentInvoice) {
+                this.currentInvoice = CoffeeManager.GetInstance().GetInvoiceManager().ProcessOrders(this.currentCustomer.GetOrders());
+            }
             for (Order order : orders) {
                 synchronized (this.currentOrder) {
                     this.currentOrder = order;
                 }
-                // TODO: wait for nb seconds;
+                try {
+                    // TODO: this should get directly the item from order and order should create the item directly
+                    IItem item = CoffeeManager.GetInstance().GetMenu().GetItem(this.currentOrder.GetItemID());
+                    Thread.sleep(java.lang.Math.round(item.GetPreparationTime() * 1000));
+                } catch (UnknownItemException e) {
+                    System.out.println("Unknow item " + e.getMessage());
+                } catch (InterruptedException e) {
+                    System.out.println("Interrupted preparation " + e.getMessage());
+                }
             }
-            // TODO: create invoice for orders with InvoiceManager
             synchronized (this.currentCustomer) {
-                this.currentCustomer = null; // TODO: get customer for front desk
+                this.currentCustomer = CoffeeManager.GetInstance().GetFrontDesk().GetWaitingCustomer();
             }
         }
     }
@@ -40,5 +51,10 @@ class Staff extends Thread
     public Order GetCurrentOrder()
     {
         return this.currentOrder;
+    }
+
+    public Invoice GetCurrentInvoice()
+    {
+        return this.currentInvoice;
     }
 }

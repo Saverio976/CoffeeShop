@@ -6,13 +6,15 @@ class ColdBeverage extends IBeverage
     private String Category;
     private String Description;
     private float Cost;
+    private float PreparationTime;
 
-    public ColdBeverage(String aID, String aDescription, float aCost)
+    public ColdBeverage(String aID, String aDescription, float aCost, float aPreparationTime)
     {
         Category = "Beverage.ColdBeverage";
         ID = Category + "." + aID;
         Description = aDescription;
         Cost = aCost;
+        PreparationTime = aPreparationTime;
     }
 
     public String GetID()
@@ -33,5 +35,10 @@ class ColdBeverage extends IBeverage
     public float GetCost()
     {
         return Cost;
+    }
+
+    public float GetPreparationTime()
+    {
+        return PreparationTime;
     }
 }
