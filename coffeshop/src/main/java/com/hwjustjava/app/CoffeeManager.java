@@ -17,7 +17,7 @@ class CoffeeManager
         Invoices = new InvoiceManager();
     }
 
-    public void Reset()
+    public synchronized void Reset()
     {
         TheFrontDesk = new FrontDesk();
         CustomersManager = new CustomerManager();
