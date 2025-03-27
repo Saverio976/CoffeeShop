@@ -6,14 +6,21 @@ class Statistics
     {
     }
 
+    public String GetStatistics()
+    {
+        java.util.List<Customer> customers = CoffeeManager.GetInstance().GetFrontDesk().GetCompletedCustomerOrders();
+        java.util.List<Invoice> invoices = CoffeeManager.GetInstance().GetInvoiceManager().GetInvoices();
+        String stat = "";
+
+        stat += "Number of customer(s): " + customers.size();
+        stat += "\nNumber of Invoice(s): " + invoices.size(); // If a customer has done 2 invoice
+        stat += "\nTotal income: " + CoffeeManager.GetInstance().GetInvoiceManager().GetTotalIncome();
+        stat += "\nBiggest customer: " + CoffeeManager.GetInstance().GetInvoiceManager().GetBiggestCustomer();
+        return stat;
+    }
+
     public void PrintStatistics()
     {
-        java.util.List<Order> orders = CoffeeManager.GetInstance().GetOrderManager().GetCompletedOrders();
-        java.util.List<Invoice> invoices = CoffeeManager.GetInstance().GetInvoiceManager().GetInvoices();
-
-        System.out.println("Number of Item bought: " + orders.size());
-        System.out.println("Number of Invoice: " + invoices.size());
-        System.out.println("Total income: " + CoffeeManager.GetInstance().GetInvoiceManager().GetTotalIncome());
-        System.out.println("Biggest customer: " + CoffeeManager.GetInstance().GetInvoiceManager().GetBiggestCustomer());
+        System.out.println(GetStatistics());
     }
 }

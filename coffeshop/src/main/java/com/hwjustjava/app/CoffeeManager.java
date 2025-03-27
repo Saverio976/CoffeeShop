@@ -4,14 +4,14 @@ class CoffeeManager
 {
     private static CoffeeManager SingleInstance = null;
 
-    private OrderManager Orders;
+    private FrontDesk TheFrontDesk;
     private CustomerManager CustomersManager;
     private Menu Menus;
     private InvoiceManager Invoices;
 
     private CoffeeManager()
     {
-        Orders = new OrderManager();
+        TheFrontDesk = new FrontDesk();
         CustomersManager = new CustomerManager();
         Menus = new Menu();
         Invoices = new InvoiceManager();
@@ -19,7 +19,7 @@ class CoffeeManager
 
     public void Reset()
     {
-        Orders = new OrderManager();
+        TheFrontDesk = new FrontDesk();
         CustomersManager = new CustomerManager();
         Menus = new Menu();
         Invoices = new InvoiceManager();
@@ -34,9 +34,9 @@ class CoffeeManager
         return SingleInstance;
     }
 
-    public OrderManager GetOrderManager()
+    public FrontDesk GetFrontDesk()
     {
-        return Orders;
+        return TheFrontDesk;
     }
 
     public CustomerManager GetCustomerManager()

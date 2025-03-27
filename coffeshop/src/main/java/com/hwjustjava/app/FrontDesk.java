@@ -2,24 +2,54 @@ package com.hwjustjava.app;
 import java.util.HashMap;
 import java.util.Map;
 
-class OrderManager
+class NumberCustom
 {
-    private java.util.Queue<Order> Orders;
-    private java.util.List<Order> CompletedOrders;
-    private int NumberWaitingOrders;
+    private int value;
+    String mutex = "";
 
-    public OrderManager()
+    NumberCustom(int aValue)
     {
-        Orders = new java.util.LinkedList<Order>();
-        CompletedOrders = new java.util.LinkedList<Order>();
-        NumberWaitingOrders = 0;
+        value = aValue;
     }
 
-    public OrderManager(String CsvFilePath) throws InvalidOrderCsvException
+    public void inc()
     {
-        Orders = new java.util.LinkedList<Order>();
-        CompletedOrders = new java.util.LinkedList<Order>();
-        NumberWaitingOrders = 0;
+        synchronized (this.mutex) {
+            value = value + 1;
+        }
+    }
+
+    public void dec()
+    {
+        synchronized (this.mutex) {
+            value = value - 1;
+        }
+    }
+
+    public int get()
+    {
+        return value;
+    }
+}
+
+class FrontDesk
+{
+    private java.util.Queue<Customer> CustomerOrders;
+    private java.util.List<Customer> CompletedCustomerOrders;
+    private NumberCustom NumberWaitingCustomers;
+
+    public FrontDesk()
+    {
+        CustomerOrders = new java.util.LinkedList<Customer>();
+        CompletedCustomerOrders = new java.util.LinkedList<Customer>();
+        NumberWaitingCustomers = new NumberCustom(0);
+    }
+
+    public FrontDesk(String CsvFilePath) throws InvalidOrderCsvException
+    {
+        CustomerOrders = new java.util.LinkedList<Customer>();
+        CompletedCustomerOrders = new java.util.LinkedList<Customer>();
+        NumberWaitingCustomers = new NumberCustom(0);
         try {
             FromCsvFile(CsvFilePath);
         } catch (InvalidOrderCsvException e) {
@@ -58,7 +88,11 @@ class OrderManager
                 }
                 java.time.Instant time = java.time.Instant.ofEpochSecond(epochSecond);
                 if (lastInstant != null && itemsID.size() != 0 && (!lastCustomerID.equals(row[1].trim()) || !lastInstant.equals(time))) {
-                    CreateOrders(itemsID, lastCustomerID, lastInstant);
+                    try {
+                        CreateCustomerOrders(itemsID, lastCustomerID, lastInstant);
+                    } catch (InvalidCustomerException e) {
+                        System.out.println("Invalid Customer Exception: " + e.getMessage());
+                    }
                     itemsID.clear();
                 }
                 lastCustomerID = row[1].trim();
@@ -67,7 +101,11 @@ class OrderManager
                 inputLine = buff.readLine();
             }
             if (lastInstant != null && itemsID.size() != 0) {
-                CreateOrders(itemsID, lastCustomerID, lastInstant);
+                try {
+                    CreateCustomerOrders(itemsID, lastCustomerID, lastInstant);
+                } catch (InvalidCustomerException e) {
+                    System.out.println("Invalid Customer Exception: " + e.getMessage());
+                }
             }
         } catch (java.io.FileNotFoundException e) {
             throw new InvalidOrderCsvException("File not found: " + CsvFilePath);
@@ -80,7 +118,7 @@ class OrderManager
         }
     }
 
-    public Invoice CreateOrders(java.util.List<String> ItemsID, String CustomerID, java.time.Instant Time) throws InvalidOrderException
+    public Invoice CreateCustomerOrders(java.util.List<String> ItemsID, String CustomerID, java.time.Instant Time) throws InvalidOrderException, InvalidCustomerException
     {
         java.util.List<Order> orders = new java.util.LinkedList<Order>();
         float discount = 0;
@@ -96,14 +134,17 @@ class OrderManager
             try {
                 Order order = new Order(itemID, CustomerID, Time, discount);
                 orders.add(order);
-                Orders.add(order);
-                NumberWaitingOrders = NumberWaitingOrders + 1;
             } catch (UnknownItemException e) {
                 System.out.println(itemID);
                 throw new InvalidOrderException("Unknown item: " + itemID);
             }
         }
-        Invoice invoice = CoffeeManager.GetInstance().GetInvoiceManager().ProcessOrders(orders);
+        // TODO: add orders to customer variable
+        Customer customer = new Customer(CustomerID, orders);
+        CoffeeManager.GetInstance().GetCustomerManager().AddCustomer(customer);
+        CustomerOrders.add(customer);
+        NumberWaitingCustomers.inc();
+        Invoice invoice = CoffeeManager.GetInstance().GetInvoiceManager().ProcessOrders(orders); // TODO: to remove
         return invoice;
     }
 
@@ -136,13 +177,26 @@ class OrderManager
         return discount;
     }
 
-    public java.util.List<Order> GetCompletedOrders()
+    public Customer GetWaitingCustomer()
     {
-        return CompletedOrders;
+        if (NumberWaitingCustomers.get() == 0) {
+            return null;
+        }
+        Customer customer = null;
+        synchronized (CustomerOrders) {
+            customer = CustomerOrders.remove();
+        }
+        NumberWaitingCustomers.dec();
+        return customer;
     }
 
-    public int GetNumberWaitingOrders()
+    public java.util.List<Customer> GetCompletedCustomerOrders()
     {
-        return NumberWaitingOrders;
+        return CompletedCustomerOrders;
+    }
+
+    public int GetNumberWaitingCustomers()
+    {
+        return NumberWaitingCustomers.get();
     }
 }
