@@ -6,5 +6,5 @@ public interface IItem
     public String GetCategory();
     public String GetDescription();
     public float GetCost();
-    public IItem Clone();
+    public float GetPreparationTime();
 }
