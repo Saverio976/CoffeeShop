@@ -35,11 +35,13 @@ class Menu
                     inputLine = buff.readLine();
                     continue;
                 }
-                if (row.length != 4)
+                if (row.length != 5)
                     throw new InvalidMenuCsvException("Invalid number of rows");
                 float cost = Float.parseFloat(row[1].trim());
+                float PreparationTime = Float.parseFloat(row[4].trim());
                 try {
-                    CreateItem(row[3].trim(), row[0].trim(), row[2].trim(), cost);
+                    IItem item = CreateItem(row[3].trim(), row[0].trim(), row[2].trim(), cost, PreparationTime);
+                    Items.put(item.GetID(), item);
                 } catch (InvalidItemException e) {
                     throw new InvalidMenuCsvException("Invalid item: " + e.getMessage());
                 }
@@ -54,7 +56,7 @@ class Menu
         }
     }
 
-    public void CreateItem(String Category, String ItemID, String Description, float cost) throws InvalidItemException
+    public IItem CreateItem(String Category, String ItemID, String Description, float cost, float PreparationTime) throws InvalidItemException
     {
         IItem item = null;
 
@@ -77,21 +79,21 @@ class Menu
 
         switch (Category) {
             case "Merchandise":
-                item = new Merchandise(ItemID, Description, cost);
+                item = new Merchandise(ItemID, Description, cost, PreparationTime);
                 break;
             case "Food":
-                item = new Food(ItemID, Description, cost);
+                item = new Food(ItemID, Description, cost, PreparationTime);
                 break;
             case "HotBeverage":
-                item = new HotBeverage(ItemID, Description, cost);
+                item = new HotBeverage(ItemID, Description, cost, PreparationTime);
                 break;
             case "ColdBeverage":
-                item = new ColdBeverage(ItemID, Description, cost);
+                item = new ColdBeverage(ItemID, Description, cost, PreparationTime);
                 break;
             default:
                 throw new InvalidItemException(Category + " is invalid");
         }
-        Items.put(item.GetID(), item);
+        return item;
     }
 
     public java.util.List<IItem> GetItems()
@@ -113,6 +115,11 @@ class Menu
         {
             throw new UnknownItemException(ItemID + " is unknown");
         }
-        return item;
+        try {
+            return CreateItem(item.GetCategory(), item.GetID(), item.GetDescription(), item.GetCost(), item.GetPreparationTime());
+        } catch (InvalidItemException e) {
+            // This should never happend because the item was already created!
+            throw new UnknownItemException("This Sloud Never Happend! (Menu.GetItem(string))");
+        }
     }
 }
