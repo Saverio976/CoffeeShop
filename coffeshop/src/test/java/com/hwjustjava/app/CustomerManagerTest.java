@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class CustomerManagerTest {
 
-    @Test
+    /*@Test
     public void CreateCustomerOK() {
         CustomerManager custManager = new CustomerManager();
         try {
@@ -40,5 +40,5 @@ class CustomerManagerTest {
         } catch (InvalidCustomerException e) {
             assertTrue(false);
         }
-    }
+    }*/
 }

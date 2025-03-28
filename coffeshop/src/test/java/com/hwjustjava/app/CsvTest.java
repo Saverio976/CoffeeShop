@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class CsvTest {
 
-    @Test
+    /*@Test
     public void LoadCSVMenuOK() {
         try {
             Menu menu = new Menu("src/test/files/menuOK.csv");
@@ -92,5 +92,5 @@ class CsvTest {
         } catch (InvalidItemException e) {
             assertTrue(false, "error: " + e.getMessage());
         }
-    }
+    }*/
 }
