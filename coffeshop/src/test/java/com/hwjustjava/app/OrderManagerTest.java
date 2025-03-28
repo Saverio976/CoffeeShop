@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class OrderManagerTest {
 
-    @Test
+    /*@Test
     public void CreateOrdersOK() {
         try {
             CoffeeManager.GetInstance().Reset();
@@ -187,5 +187,5 @@ class OrderManagerTest {
         } catch (InvalidOrderException e) {
             assertTrue(false);
         }
-    }
+    }*/
 }

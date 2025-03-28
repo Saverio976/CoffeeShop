@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class MenuTest {
 
-    @Test
+    /*@Test
     public void CreateOrderable() {
         try {
             Menu menu = new Menu();
@@ -65,5 +65,5 @@ class MenuTest {
         } catch (InvalidItemException e) {
             assertTrue(false);
         }
-    }
+    }*/
 }

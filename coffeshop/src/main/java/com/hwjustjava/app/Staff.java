@@ -30,7 +30,8 @@ class Staff extends Thread
                 try {
                     // TODO: this should get directly the item from order and order should create the item directly
                     IItem item = CoffeeManager.GetInstance().GetMenu().GetItem(this.currentOrder.GetItemID());
-                    Thread.sleep(java.lang.Math.round(item.GetPreparationTime() * 1000));
+                    float speed = CoffeeManager.GetInstance().GetStaffManager().GetSpeed();
+                    Thread.sleep(java.lang.Math.round(item.GetPreparationTime() * 1000 * speed));
                 } catch (UnknownItemException e) {
                     System.out.println("Unknow item " + e.getMessage());
                 } catch (InterruptedException e) {
