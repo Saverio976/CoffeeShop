@@ -44,6 +44,8 @@ class Staff extends Thread
         }
     }
 
+    public String GetId() {return this.id;}
+
     public Customer GetCurrentCustomer()
     {
         return this.currentCustomer;

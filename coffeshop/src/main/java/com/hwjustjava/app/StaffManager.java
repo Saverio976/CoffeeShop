@@ -11,7 +11,7 @@ class StaffManager
         this.staffs = new Staff[nbStaff];
 
         for (int i = 0; i < nbStaff; i++) {
-            this.staffs[i] = new Staff("Thread " + i);
+            this.staffs[i] = null;
         }
     }
 
@@ -30,5 +30,28 @@ class StaffManager
     public void SetSpeed(float speed)
     {
         this.speed = speed;
+    }
+
+    public void AddStaff(String name)
+    {
+        Staff staff = new Staff(name);
+
+        staff.start();
+        for (int i = 0; i < staffs.length; i++) {
+            if (staffs[i] == null) {
+                staffs[i] = staff;
+                break;
+            }
+        }
+    }
+
+    public int GetNumberOfStaffs()
+    {
+        int c = 0;
+
+        for (int i = 0; i < staffs.length; i++)
+            if (staffs[i] != null)
+                c += 1;
+        return c;
     }
 }
