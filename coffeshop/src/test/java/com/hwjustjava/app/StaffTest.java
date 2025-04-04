@@ -28,4 +28,29 @@ class StaffTest {
 
         assertTrue(true);
     }
+
+    @Test
+    public void RemoveStaffToStaffManager() {
+        StaffManager staffManager = new StaffManager(1);
+
+        if (staffManager.GetNumberOfStaffs() != 0)
+            assertTrue(false);
+
+        staffManager.AddStaff("Sam");
+
+        if (staffManager.GetNumberOfStaffs() != 1)
+            assertTrue(false);
+
+        staffManager.RemoveStaff("Frodo");
+
+        if (staffManager.GetNumberOfStaffs() != 1)
+            assertTrue(false);
+
+        staffManager.RemoveStaff("Sam");
+
+        if (staffManager.GetNumberOfStaffs() != 0)
+            assertTrue(false);
+
+        assertTrue(true);
+    }
 }

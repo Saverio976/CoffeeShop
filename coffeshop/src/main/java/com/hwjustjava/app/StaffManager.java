@@ -45,6 +45,16 @@ class StaffManager
         }
     }
 
+    public void RemoveStaff(String name)
+    {
+        for (int i = 0; i < staffs.length; i++) {
+            if (staffs[i] != null && staffs[i].GetId() == name) {
+                staffs[i] = null;
+                break;
+            }
+        }
+    }
+
     public int GetNumberOfStaffs()
     {
         int c = 0;
