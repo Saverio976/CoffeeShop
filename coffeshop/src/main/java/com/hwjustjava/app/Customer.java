@@ -9,11 +9,9 @@ class Customer
     {
         if (aID.isEmpty())
         {
-            Log.getInstance().print("Attempt to create customer with empty ID.");
             throw new InvalidCustomerException("Customer ID must not be empty.");
         }
         if (aID.length() > 36) {
-            Log.getInstance().print("Attempt to create customer with ID longer than 36 characters: " +aID);
             throw new InvalidCustomerException("Customer ID must be 36 characters or lower.");
         }
         ID = aID;
