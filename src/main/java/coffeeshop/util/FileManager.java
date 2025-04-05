@@ -66,17 +66,19 @@ public class FileManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length >= 4) {
+                if (parts.length >= 5) { // Updated to expect 5 parts (added isOnline flag)
                     int orderId = Integer.parseInt(parts[0].trim());
                     String customerId = parts[1].trim();
                     LocalDateTime timestamp = LocalDateTime.parse(parts[2].trim(), DATE_FORMATTER);
                     String itemId = parts[3].trim();
+                    // Parse the isOnline flag (defaults to false if not present)
+                    boolean isOnline = parts.length > 4 && parts[4].trim().equalsIgnoreCase("true");
 
                     // Check if order already exists
                     Order order = findOrderById(orders, orderId);
 
                     if (order == null) {
-                        order = new Order(orderId, customerId, timestamp, false);
+                        order = new Order(orderId, customerId, timestamp, false, isOnline);
                         orders.add(order);
                     }
 
@@ -103,6 +105,22 @@ public class FileManager {
         return null;
     }
 
+    public static void saveOrders(List<Order> orders) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(DATA_DIR + "orders.csv"))) {
+            for (Order order : orders) {
+                for (MenuItem item : order.getItems()) {
+                    // Format: orderId,customerId,timestamp,itemId,isOnline
+                    writer.println(order.getOrderId() + "," +
+                            order.getCustomerId() + "," +
+                            order.getFormattedTimestamp() + "," +
+                            item.getId() + "," +
+                            order.isOnline());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving orders: " + e.getMessage());
+        }
+    }
 
     public static void logEvent(String message) {
         try (FileWriter writer = new FileWriter(LOG_FILE, true)) {
@@ -119,7 +137,6 @@ public class FileManager {
             }
         }
     }
-
 
     public static void saveReport(String report) {
         try (FileWriter writer = new FileWriter(REPORT_FILE)) {

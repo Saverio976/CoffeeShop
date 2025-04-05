@@ -1,30 +1,35 @@
 ===== COFFEE SHOP SIMULATION REPORT =====
 
-Time: Sat Apr 05 06:17:18 BST 2025
+Time: Sat Apr 05 11:33:27 BST 2025
 
 ORDERS SUMMARY:
-Total orders processed: 10
-Total revenue: $60.25
+Total orders processed: 11
+Online orders: 1
+In-store orders: 10
+Total revenue: $72.60
+Online revenue: $8.10
+In-store revenue: $64.50
 
 ITEMS SOLD:
-Breakfast Sandwich: 1
-Croissant: 1
+Affogato: 2
+Croissant: 3
 Espresso: 1
-Iced Coffee: 1
-Chocolate Chip Cookie: 2
+Almond Croissant: 1
+Vietnamese Coffee: 1
 Mocha: 1
+Red Eye: 1
 Latte: 2
+Flat White: 1
 Macchiato: 1
-Smoothie: 1
+Blueberry Muffin: 1
+Turkish Coffee: 1
 Bagel with Cream Cheese: 1
-Avocado Toast: 1
-Bottled Water: 1
+Pour Over: 1
 Americano: 1
-Chai Tea Latte: 1
 Cappuccino: 2
 
 CUSTOMER SUMMARY:
-Total unique customers: 10
+Total unique customers: 11
 Customer with most orders: C7890
 
 ===== END OF REPORT =====

@@ -5,17 +5,24 @@ import coffeeshop.model.Order;
 import coffeeshop.util.FileManager;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 
 public class CoffeeShopSimulation {
-    private BlockingQueue<Order> orderQueue = new ArrayBlockingQueue<>(20); // Capacity 20
+    // Changed to PriorityBlockingQueue with a comparator that prioritizes online orders
+    private BlockingQueue<Order> orderQueue = new PriorityBlockingQueue<>(20, (o1, o2) -> {
+        // Online orders get priority over in-store orders
+        if (o1.isOnline() != o2.isOnline()) {
+            return o1.isOnline() ? -1 : 1;  // Online orders come first
+        }
+        // For orders of the same type (both online or both in-store), use timestamp (FIFO)
+        return o1.getTimestamp().compareTo(o2.getTimestamp());
+    });
+
     private final int MAX_QUEUE_SIZE = 20; // Optional: define as constant
     private List<StaffMember> staff;
     private List<Order> completedOrders;
@@ -94,7 +101,8 @@ public class CoffeeShopSimulation {
             if (orderQueue.size() < MAX_QUEUE_SIZE) {
                 discountManager.applyDiscount(order);
                 orderQueue.put(order);
-                FileManager.logEvent("Order #" + order.getOrderId() + " added to queue");
+                FileManager.logEvent("Order #" + order.getOrderId() +
+                        (order.isOnline() ? " (Online)" : " (In-store)") + " added to queue");
                 notifyObservers();
             } else {
                 FileManager.logEvent("Queue full! Order #" + order.getOrderId() + " rejected");
@@ -146,8 +154,7 @@ public class CoffeeShopSimulation {
         }
     }
 
-
-    // Generate report
+    // Generate report with online order statistics
     private void generateReport() {
         StringBuilder report = new StringBuilder();
         report.append("===== COFFEE SHOP SIMULATION REPORT =====\n\n");
@@ -156,12 +163,28 @@ public class CoffeeShopSimulation {
         report.append("ORDERS SUMMARY:\n");
         report.append("Total orders processed: ").append(completedOrders.size()).append("\n");
 
+        // Count online vs in-store orders
+        long onlineOrders = completedOrders.stream().filter(Order::isOnline).count();
+        long inStoreOrders = completedOrders.size() - onlineOrders;
+
+        report.append("Online orders: ").append(onlineOrders).append("\n");
+        report.append("In-store orders: ").append(inStoreOrders).append("\n");
+
         double totalRevenue = 0;
+        double onlineRevenue = 0;
+        double inStoreRevenue = 0;
         Map<String, Integer> itemsSold = new HashMap<>();
         Map<String, Integer> customerOrders = new HashMap<>();
 
         for (Order order : completedOrders) {
-            totalRevenue += order.getTotalAmount();
+            double orderAmount = order.getTotalAmount();
+            totalRevenue += orderAmount;
+
+            if (order.isOnline()) {
+                onlineRevenue += orderAmount;
+            } else {
+                inStoreRevenue += orderAmount;
+            }
 
             String customerId = order.getCustomerId();
             customerOrders.put(customerId, customerOrders.getOrDefault(customerId, 0) + 1);
@@ -172,7 +195,9 @@ public class CoffeeShopSimulation {
             }
         }
 
-        report.append("Total revenue: $").append(String.format("%.2f", totalRevenue)).append("\n\n");
+        report.append("Total revenue: $").append(String.format("%.2f", totalRevenue)).append("\n");
+        report.append("Online revenue: $").append(String.format("%.2f", onlineRevenue)).append("\n");
+        report.append("In-store revenue: $").append(String.format("%.2f", inStoreRevenue)).append("\n\n");
 
         report.append("ITEMS SOLD:\n");
         for (Map.Entry<String, Integer> entry : itemsSold.entrySet()) {

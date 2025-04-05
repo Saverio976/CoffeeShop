@@ -13,24 +13,32 @@ public class Order {
     private List<MenuItem> items;
     private double totalAmount;
     private boolean isProcessed;
+    private boolean isOnline; // New field to track online orders
 
     public Order(String customerId) {
+        this(customerId, false); // Default to in-store order
+    }
+
+    // New constructor with online parameter
+    public Order(String customerId, boolean isOnline) {
         this.orderId = nextOrderId++;
         this.customerId = customerId;
         this.timestamp = LocalDateTime.now();
         this.items = new ArrayList<>();
         this.totalAmount = 0.0;
         this.isProcessed = false;
+        this.isOnline = isOnline;
     }
 
-    // Constructor for loading existing orders
-    public Order(int orderId, String customerId, LocalDateTime timestamp, boolean isProcessed) {
+    // Updated constructor for loading existing orders
+    public Order(int orderId, String customerId, LocalDateTime timestamp, boolean isProcessed, boolean isOnline) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.timestamp = timestamp;
         this.items = new ArrayList<>();
         this.totalAmount = 0.0;
         this.isProcessed = isProcessed;
+        this.isOnline = isOnline;
 
         // Update next order ID if needed
         if (orderId >= nextOrderId) {
@@ -57,14 +65,17 @@ public class Order {
     public List<MenuItem> getItems() { return items; }
     public double getTotalAmount() { return totalAmount; }
     public boolean isProcessed() { return isProcessed; }
+    public boolean isOnline() { return isOnline; } // New getter
 
     // Setters
     public void setProcessed(boolean processed) { this.isProcessed = processed; }
+    public void setOnline(boolean online) { this.isOnline = online; } // New setter
 
     @Override
     public String toString() {
         return "Order #" + orderId + " - Customer: " + customerId +
-                " - Items: " + items.size() + " - Total: $" + String.format("%.2f", totalAmount);
+                " - Items: " + items.size() + " - Total: $" + String.format("%.2f", totalAmount) +
+                (isOnline ? " (Online)" : " (In-store)");
     }
 
     public String getFormattedTimestamp() {

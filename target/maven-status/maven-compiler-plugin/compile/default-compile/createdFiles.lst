@@ -4,6 +4,7 @@ coffeeshop\model\Customer.class
 coffeeshop\model\Order.class
 coffeeshop\CoffeeShopApplication.class
 coffeeshop\simulation\CoffeeShopSimulation.class
+coffeeshop\ui\CoffeeShopFX$1.class
 coffeeshop\simulation\StaffMember.class
 coffeeshop\ui\NewOrderDialogFX.class
 coffeeshop\model\MenuItem.class
