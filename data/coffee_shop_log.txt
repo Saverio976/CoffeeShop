@@ -1,0 +1,125 @@
+2025-04-05 06:16:36 - Simulation initialized with 10 existing orders
+2025-04-05 06:16:45 - Simulation started with 2 staff members
+2025-04-05 06:16:45 - Staff member Staff 1 started working
+2025-04-05 06:16:45 - Staff member Staff 2 started working
+2025-04-05 06:16:45 - Staff 1 is processing order #1001 for customer C1234
+2025-04-05 06:16:45 - Staff 2 is processing order #1002 for customer C2345
+2025-04-05 06:16:48 - Staff 2 completed order #1002
+2025-04-05 06:16:48 - Staff 2 is processing order #1003 for customer C3456
+2025-04-05 06:16:49 - Added staff member: Staff 3
+2025-04-05 06:16:49 - Staff 1 completed order #1001
+2025-04-05 06:16:49 - Staff 1 is processing order #1004 for customer C4567
+2025-04-05 06:16:52 - Removed staff member: Staff 3
+2025-04-05 06:16:53 - Staff 2 completed order #1003
+2025-04-05 06:16:53 - Staff 1 completed order #1004
+2025-04-05 06:16:53 - Staff 2 is processing order #1005 for customer C5678
+2025-04-05 06:16:53 - Staff 1 is processing order #1006 for customer C6789
+2025-04-05 06:16:56 - Staff 2 completed order #1005
+2025-04-05 06:16:56 - Staff 2 is processing order #1007 for customer C7890
+2025-04-05 06:16:57 - Staff 1 completed order #1006
+2025-04-05 06:16:57 - Staff 1 is processing order #1008 for customer C8901
+2025-04-05 06:16:59 - Staff 2 completed order #1007
+2025-04-05 06:16:59 - Staff 2 is processing order #1009 for customer C9012
+2025-04-05 06:17:01 - Staff 1 completed order #1008
+2025-04-05 06:17:01 - Staff 1 is processing order #1010 for customer C0123
+2025-04-05 06:17:02 - Staff 2 completed order #1009
+2025-04-05 06:17:06 - Staff 1 completed order #1010
+2025-04-05 06:17:09 - Removed staff member: Staff 2
+2025-04-05 06:17:10 - Staff member Staff 2 finished working
+2025-04-05 06:17:10 - Staff member Staff 3 started working
+2025-04-05 06:17:10 - Staff member Staff 3 finished working
+2025-04-05 06:17:15 - Removed staff member: Staff 1
+2025-04-05 06:17:15 - Staff member Staff 1 finished working
+2025-04-05 06:17:18 - Simulation stopped
+2025-04-05 06:17:18 - Simulation report generated
+2025-04-05 10:12:28 - Simulation initialized with 10 existing orders
+2025-04-05 10:12:37 - Simulation started with 3 staff members
+2025-04-05 10:12:37 - Staff member Staff 1 started working
+2025-04-05 10:12:37 - Staff member Staff 3 started working
+2025-04-05 10:12:37 - Staff member Staff 2 started working
+2025-04-05 10:12:37 - Staff 3 is processing order #1002 for customer C2345
+2025-04-05 10:12:37 - Staff 1 is processing order #1001 for customer C1234
+2025-04-05 10:12:37 - Staff 2 is processing order #1003 for customer C3456
+2025-04-05 10:12:40 - Staff 3 completed order #1002
+2025-04-05 10:12:40 - Staff 3 is processing order #1004 for customer C4567
+2025-04-05 10:12:41 - Staff 1 completed order #1001
+2025-04-05 10:12:41 - Staff 1 is processing order #1005 for customer C5678
+2025-04-05 10:12:42 - Staff 2 completed order #1003
+2025-04-05 10:12:42 - Staff 2 is processing order #1006 for customer C6789
+2025-04-05 10:12:44 - Staff 1 completed order #1005
+2025-04-05 10:12:44 - Staff 1 is processing order #1007 for customer C7890
+2025-04-05 10:12:44 - Staff 3 completed order #1004
+2025-04-05 10:12:44 - Staff 3 is processing order #1008 for customer C8901
+2025-04-05 10:12:46 - Staff 2 completed order #1006
+2025-04-05 10:12:46 - Staff 2 is processing order #1009 for customer C9012
+2025-04-05 10:12:47 - Staff 1 completed order #1007
+2025-04-05 10:12:47 - Staff 1 is processing order #1010 for customer C0123
+2025-04-05 10:12:48 - Staff 3 completed order #1008
+2025-04-05 10:12:49 - Staff 2 completed order #1009
+2025-04-05 10:12:52 - Staff 1 completed order #1010
+2025-04-05 10:14:03 - Simulation initialized with 10 existing orders
+2025-04-05 10:14:19 - Simulation started with 2 staff members
+2025-04-05 10:14:19 - Staff member Staff 2 started working
+2025-04-05 10:14:19 - Staff member Staff 1 started working
+2025-04-05 10:14:19 - Staff 2 is processing order #1001 for customer C1234
+2025-04-05 10:14:19 - Staff 1 is processing order #1002 for customer C2345
+2025-04-05 10:14:21 - Added staff member: Staff 3
+2025-04-05 10:14:22 - Staff 1 completed order #1002
+2025-04-05 10:14:22 - Staff 1 is processing order #1003 for customer C3456
+2025-04-05 10:14:23 - Staff 2 completed order #1001
+2025-04-05 10:14:23 - Staff 2 is processing order #1004 for customer C4567
+2025-04-05 10:14:27 - Staff 2 completed order #1004
+2025-04-05 10:14:27 - Staff 1 completed order #1003
+2025-04-05 10:14:27 - Staff 2 is processing order #1005 for customer C5678
+2025-04-05 10:14:27 - Staff 1 is processing order #1006 for customer C6789
+2025-04-05 10:14:30 - Staff 2 completed order #1005
+2025-04-05 10:14:30 - Staff 2 is processing order #1007 for customer C7890
+2025-04-05 10:14:31 - Staff 1 completed order #1006
+2025-04-05 10:14:31 - Staff 1 is processing order #1008 for customer C8901
+2025-04-05 10:14:33 - Staff 2 completed order #1007
+2025-04-05 10:14:33 - Staff 2 is processing order #1009 for customer C9012
+2025-04-05 10:14:35 - Staff 1 completed order #1008
+2025-04-05 10:14:35 - Staff 1 is processing order #1010 for customer C0123
+2025-04-05 10:14:36 - Staff 2 completed order #1009
+2025-04-05 10:14:38 - Removed staff member: Staff 3
+2025-04-05 10:14:40 - Staff 1 completed order #1010
+2025-04-05 10:36:02 - Simulation initialized with 0 existing orders
+2025-04-05 11:03:56 - Simulation initialized with 10 existing orders
+2025-04-05 11:12:27 - Simulation initialized with 10 existing orders
+2025-04-05 11:15:54 - Simulation initialized with 10 existing orders
+2025-04-05 11:22:12 - Simulation initialized with 10 existing orders
+2025-04-05 11:32:29 - Simulation initialized with 10 existing orders
+2025-04-05 11:32:50 - Applied 10.0% discount to order #1011 (3 items bundle)
+2025-04-05 11:32:50 - Order #1011 (Online) added to queue
+2025-04-05 11:32:50 - New order created via GUI: Order #1011 - Customer: C5211 - Items: 3 - Total: $8.10 (Online)
+2025-04-05 11:33:04 - Simulation started with 3 staff members
+2025-04-05 11:33:04 - Staff member Staff 2 started working
+2025-04-05 11:33:04 - Staff member Staff 1 started working
+2025-04-05 11:33:04 - Staff member Staff 3 started working
+2025-04-05 11:33:04 - Staff 2 is processing order #1011 for customer C5211
+2025-04-05 11:33:04 - Staff 3 is processing order #1002 for customer C2345
+2025-04-05 11:33:04 - Staff 1 is processing order #1001 for customer C1234
+2025-04-05 11:33:07 - Staff 3 completed order #1002
+2025-04-05 11:33:07 - Staff 3 is processing order #1003 for customer C3456
+2025-04-05 11:33:08 - Staff 1 completed order #1001
+2025-04-05 11:33:08 - Staff 1 is processing order #1004 for customer C4567
+2025-04-05 11:33:09 - Staff 2 completed order #1011
+2025-04-05 11:33:09 - Staff 2 is processing order #1005 for customer C5678
+2025-04-05 11:33:12 - Staff 2 completed order #1005
+2025-04-05 11:33:12 - Staff 1 completed order #1004
+2025-04-05 11:33:12 - Staff 2 is processing order #1006 for customer C6789
+2025-04-05 11:33:12 - Staff 1 is processing order #1007 for customer C7890
+2025-04-05 11:33:12 - Staff 3 completed order #1003
+2025-04-05 11:33:12 - Staff 3 is processing order #1008 for customer C8901
+2025-04-05 11:33:15 - Staff 1 completed order #1007
+2025-04-05 11:33:15 - Staff 1 is processing order #1009 for customer C9012
+2025-04-05 11:33:16 - Staff 2 completed order #1006
+2025-04-05 11:33:16 - Staff 2 is processing order #1010 for customer C0123
+2025-04-05 11:33:16 - Staff 3 completed order #1008
+2025-04-05 11:33:18 - Staff 1 completed order #1009
+2025-04-05 11:33:21 - Staff 2 completed order #1010
+2025-04-05 11:33:27 - Staff member Staff 1 finished working
+2025-04-05 11:33:27 - Staff member Staff 3 finished working
+2025-04-05 11:33:27 - Staff member Staff 2 finished working
+2025-04-05 11:33:27 - Simulation stopped
+2025-04-05 11:33:27 - Simulation report generated
