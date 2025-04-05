@@ -1,0 +1,20 @@
+ID001,Espresso,Strong black coffee,2.50,Coffee
+ID002,Cappuccino,Espresso with steamed milk and foam,3.50,Coffee
+ID003,Latte,Espresso with steamed milk,3.75,Coffee
+ID004,Americano,Espresso with hot water,3.00,Coffee
+ID005,Mocha,Espresso with chocolate and steamed milk,4.25,Coffee
+ID006,Macchiato,Espresso with a small amount of foamed milk,3.25,Coffee
+ID007,Croissant,Buttery flaky pastry,2.75,Food
+ID008,Blueberry Muffin,Fresh blueberry muffin,2.50,Food
+ID009,Chocolate Chip Cookie,Freshly baked chocolate chip cookie,1.75,Food
+ID010,Bagel with Cream Cheese,Plain bagel with cream cheese spread,3.25,Food
+ID011,Avocado Toast,Whole grain toast with smashed avocado,5.50,Food
+ID012,Breakfast Sandwich,Egg and cheese on an English muffin,4.50,Food
+ID013,Iced Tea,Fresh brewed iced tea,2.25,Cold Drinks
+ID014,Orange Juice,Freshly squeezed orange juice,3.00,Cold Drinks
+ID015,Bottled Water,Purified spring water,1.50,Cold Drinks
+ID016,Iced Coffee,Cold brewed coffee over ice,3.25,Cold Drinks
+ID017,Smoothie,Fruit smoothie with yogurt,4.50,Cold Drinks
+ID018,Hot Chocolate,Rich chocolate with steamed milk,3.50,Hot Drinks
+ID019,Chai Tea Latte,Spiced tea with steamed milk,4.00,Hot Drinks
+ID020,Herbal Tea,Variety of caffeine-free herbal teas,2.75,Hot Drinks
