@@ -84,6 +84,8 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
     @Override
     public void stop()
     {
+
+        StaffMember.setSpeedMultiplier(100);
         simulation.stop();
     }
 
@@ -186,7 +188,7 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
         Label speedLabel = new Label("Simulation Speed");
         speedLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
 
-        Slider speedSlider = new Slider(0.1, 2.0, 1.0);
+        Slider speedSlider = new Slider(0.1, 4.0, 1.0);
         speedSlider.setPrefWidth(120);
         speedSlider.setShowTickMarks(true);
         speedSlider.setShowTickLabels(true);
@@ -200,6 +202,7 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
         speedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             double value = Math.round(newVal.doubleValue() * 10) / 10.0;
             currentSpeedLabel.setText(value + "x");
+            StaffMember.setSpeedMultiplier(value);
         });
 
         HBox speedLabelBox = new HBox(10);
