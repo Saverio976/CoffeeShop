@@ -42,7 +42,7 @@ public class CoffeeShopSimulation {
     public void initialize() {
         List<Order> existingOrders = FileManager.loadOrders(menu);
         for (Order order : existingOrders) {
-            orderQueue.add(order);
+            addOrder(order);
         }
 
         FileManager.logEvent("Simulation initialized with " + existingOrders.size() + " existing orders");
