@@ -12,23 +12,45 @@ class CustomerTest {
     @Test
     void createSimpleCustomer()
     {
-        Customer customer = new Customer("Frodo");
+        try {
+            Customer customer = new Customer("Frodo");
 
-        if (!Objects.equals(customer.getId(), "Frodo"))
+            if (!Objects.equals(customer.getId(), "Frodo"))
+                assertTrue(false);
+        } catch (Exception e) {
             assertTrue(false);
+        }
         assertTrue(true);
     }
 
     @Test
     void setOrderToCustomer()
     {
-        Customer customer = new Customer("Frodo");
+        try {
+            Customer customer = new Customer("Frodo");
 
-        customer.createOrder();
-        if (customer.getCurrentOrder() == null)
+            customer.createOrder();
+            if (customer.getCurrentOrder() == null)
+                assertTrue(false);
+            if (!Objects.equals(customer.getCurrentOrder().getCustomerId(), customer.getId()))
+                assertTrue(false);
+        } catch (Exception e) {
             assertTrue(false);
-        if (!Objects.equals(customer.getCurrentOrder().getCustomerId(), customer.getId()))
-            assertTrue(false);
+        }
         assertTrue(true);
+    }
+
+    @Test
+    void invalidCustomer()
+    {
+        try {
+            Customer customer = new Customer("");
+
+            if (customer.getId() != "")
+                assertTrue(false);
+            assertTrue(false);
+        } catch (Exception e) {
+            assertTrue(true);
+        }
     }
 }

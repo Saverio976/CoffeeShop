@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BE"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\benja\AppData\Local\Temp\surefire1976382086281515974\surefirebooter-20250406131822029_3.jar C:\Users\benja\AppData\Local\Temp\surefire1976382086281515974 2025-04-06T13-18-21_828-jvmRun1 surefire-20250406131822029_1tmp surefire_0-20250406131822029_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\benja\AppData\Local\Temp\surefire864641151425072634\surefirebooter-20250406133607059_3.jar C:\Users\benja\AppData\Local\Temp\surefire864641151425072634 2025-04-06T13-36-06_854-jvmRun1 surefire-20250406133607059_1tmp surefire_0-20250406133607059_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\benja\Desktop\CoffeeShop\target\test-classes;C:\Users\benja\Desktop\CoffeeShop\target\classes;C:\Users\benja\.m2\repository\org\openjfx\javafx-controls\20\javafx-controls-20.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-controls\20\javafx-controls-20-win.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-graphics\20\javafx-graphics-20.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-graphics\20\javafx-graphics-20-win.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-base\20\javafx-base-20.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-base\20\javafx-base-20-win.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-fxml\20\javafx-fxml-20.jar;C:\Users\benja\.m2\repository\org\openjfx\javafx-fxml\20\javafx-fxml-20-win.jar;C:\Users\benja\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\benja\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\benja\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\benja\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\benja\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\benja\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\benja\AppData\Local\Temp\surefire1976382086281515974\surefirebooter-20250406131822029_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\benja\AppData\Local\Temp\surefire864641151425072634\surefirebooter-20250406133607059_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+9-LTS-239"/>
@@ -58,7 +58,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="createTwoSimpleOrders" classname="coffeeshop.OrderTest" time="0.001"/>
+  <testcase name="createTwoSimpleOrders" classname="coffeeshop.OrderTest" time="0.002"/>
   <testcase name="setItemToOrder" classname="coffeeshop.OrderTest" time="0.001"/>
   <testcase name="applyDiscountToOrder" classname="coffeeshop.OrderTest" time="0.002"/>
 </testsuite>
