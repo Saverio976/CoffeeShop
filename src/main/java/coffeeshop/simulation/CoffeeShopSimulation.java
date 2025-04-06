@@ -13,17 +13,14 @@ import java.util.concurrent.BlockingQueue;
 import javafx.application.Platform;
 
 public class CoffeeShopSimulation {
-    // Changed to PriorityBlockingQueue with a comparator that prioritizes online orders
-    private BlockingQueue<Order> orderQueue = new PriorityBlockingQueue<>(20, (o1, o2) -> {
-        // Online orders get priority over in-store orders
+    private BlockingQueue<Order> orderQueue = new PriorityBlockingQueue<>(999, (o1, o2) -> {
         if (o1.isOnline() != o2.isOnline()) {
             return o1.isOnline() ? -1 : 1;  // Online orders come first
         }
-        // For orders of the same type (both online or both in-store), use timestamp (FIFO)
         return o1.getTimestamp().compareTo(o2.getTimestamp());
     });
 
-    private final int MAX_QUEUE_SIZE = 20; // Optional: define as constant
+    private final int MAX_QUEUE_SIZE = 999;
     private List<StaffMember> staff;
     private List<Order> completedOrders;
     private Map<String, MenuItem> menu;
@@ -42,7 +39,6 @@ public class CoffeeShopSimulation {
         this.observers = new ArrayList<>();
     }
 
-    // Initialize simulation with existing orders
     public void initialize() {
         List<Order> existingOrders = FileManager.loadOrders(menu);
         for (Order order : existingOrders) {
@@ -52,14 +48,12 @@ public class CoffeeShopSimulation {
         FileManager.logEvent("Simulation initialized with " + existingOrders.size() + " existing orders");
     }
 
-    // Start the simulation
     public void start(int staffCount) {
         if (isRunning) return;
 
         isRunning = true;
         executor = Executors.newFixedThreadPool(staffCount);
 
-        // Create staff members
         for (int i = 1; i <= staffCount; i++) {
             StaffMember staffMember = new StaffMember("Staff " + i, this);
             staff.add(staffMember);
@@ -70,13 +64,11 @@ public class CoffeeShopSimulation {
         notifyObservers();
     }
 
-    // Stop the simulation
     public void stop() {
         if (!isRunning) return;
 
         isRunning = false;
 
-        // Stop all staff
         for (StaffMember staffMember : staff) {
             staffMember.stopWorking();
         }
@@ -95,7 +87,6 @@ public class CoffeeShopSimulation {
         generateReport();
     }
 
-    // Add a new order to the queue
     public void addOrder(Order order) {
         try {
             if (orderQueue.size() < MAX_QUEUE_SIZE) {
@@ -118,7 +109,6 @@ public class CoffeeShopSimulation {
         return MAX_QUEUE_SIZE;
     }
 
-    // Get next order from the queue
     public synchronized Order getNextOrder() {
         try {
             return orderQueue.poll(100, TimeUnit.MILLISECONDS);
@@ -128,13 +118,11 @@ public class CoffeeShopSimulation {
         }
     }
 
-    // Order has been completed
     public synchronized void orderCompleted(Order order) {
         completedOrders.add(order);
         notifyObservers();
     }
 
-    // Update staff status
     public void updateStaffStatus(StaffMember staff, String status) {
         notifyObservers();
     }
@@ -154,7 +142,6 @@ public class CoffeeShopSimulation {
         }
     }
 
-    // Generate report with online order statistics
     private void generateReport() {
         StringBuilder report = new StringBuilder();
         report.append("===== COFFEE SHOP SIMULATION REPORT =====\n\n");
@@ -163,7 +150,6 @@ public class CoffeeShopSimulation {
         report.append("ORDERS SUMMARY:\n");
         report.append("Total orders processed: ").append(completedOrders.size()).append("\n");
 
-        // Count online vs in-store orders
         long onlineOrders = completedOrders.stream().filter(Order::isOnline).count();
         long inStoreOrders = completedOrders.size() - onlineOrders;
 
@@ -223,7 +209,6 @@ public class CoffeeShopSimulation {
                 .orElse(null);
     }
 
-    // Observer pattern methods
     public void addObserver(SimulationObserver observer) {
         observers.add(observer);
     }
@@ -238,7 +223,6 @@ public class CoffeeShopSimulation {
         }
     }
 
-    // Getters
     public Queue<Order> getOrderQueue() { return orderQueue; }
     public List<StaffMember> getStaff() { return staff; }
     public List<Order> getCompletedOrders() { return completedOrders; }
