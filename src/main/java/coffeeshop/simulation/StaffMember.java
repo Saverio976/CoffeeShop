@@ -41,7 +41,7 @@ public class StaffMember implements Runnable {
 
                 // Wait a bit before checking again
                 try {
-                    TimeUnit.MILLISECONDS.sleep(500);
+                    TimeUnit.MILLISECONDS.sleep((long) (500 / speedMultiplier));
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
