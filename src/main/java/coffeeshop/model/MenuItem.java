@@ -1,5 +1,7 @@
 package coffeeshop.model;
 
+import coffeeshop.exceptions.InvalidPriceException;
+
 public class MenuItem {
     private String id;
     private String name;
@@ -7,10 +9,12 @@ public class MenuItem {
     private double price;
     private String category;
 
-    public MenuItem(String id, String name, String description, double price, String category) {
+    public MenuItem(String id, String name, String description, double price, String category) throws InvalidPriceException {
         this.id = id;
         this.name = name;
         this.description = description;
+        if (price < 0)
+            throw new InvalidPriceException("Price cannot be negative");
         this.price = price;
         this.category = category;
     }

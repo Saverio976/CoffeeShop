@@ -1,6 +1,7 @@
 coffeeshop\util\FileManager.class
 coffeeshop\simulation\DiscountManager.class
 coffeeshop\model\Customer.class
+coffeeshop\exceptions\InvalidPriceException.class
 coffeeshop\model\Order.class
 coffeeshop\CoffeeShopApplication.class
 coffeeshop\simulation\CoffeeShopSimulation.class
@@ -10,3 +11,4 @@ coffeeshop\ui\NewOrderDialogFX.class
 coffeeshop\model\MenuItem.class
 coffeeshop\simulation\SimulationObserver.class
 coffeeshop\ui\CoffeeShopFX.class
+coffeeshop\exceptions\InvalidCustomerID.class

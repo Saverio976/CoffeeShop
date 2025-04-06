@@ -47,8 +47,12 @@ public class FileManager {
                     double price = Double.parseDouble(parts[3].trim());
                     String category = parts[4].trim();
 
-                    MenuItem item = new MenuItem(id, name, description, price, category);
-                    menuItems.put(id, item);
+                    try {
+                        MenuItem item = new MenuItem(id, name, description, price, category);
+                        menuItems.put(id, item);
+                    } catch (Exception e) {
+                        System.err.println("Error creating menu item: " + e.getMessage());
+                    }
                 }
             }
         } catch (IOException e) {
