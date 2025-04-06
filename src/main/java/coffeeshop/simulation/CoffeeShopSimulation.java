@@ -140,7 +140,7 @@ public class CoffeeShopSimulation {
 
     public synchronized void removeStaffMember() {
         if (!staff.isEmpty()) {
-            StaffMember member = staff.remove(staff.size()-1);
+            StaffMember member = staff.removeLast();
             member.stopWorking();
             Thread t = executor.removeLast();
             try {
