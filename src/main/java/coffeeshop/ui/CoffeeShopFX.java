@@ -79,6 +79,12 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
         updateDisplay();
     }
 
+    @Override
+    public void stop()
+    {
+        simulation.stop();
+    }
+
     private HBox createHeader() {
         HBox header = new HBox(20);
         header.setPadding(new Insets(15));
