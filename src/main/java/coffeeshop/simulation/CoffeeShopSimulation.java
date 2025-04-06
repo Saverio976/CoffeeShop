@@ -4,14 +4,10 @@ import coffeeshop.model.MenuItem;
 import coffeeshop.model.Order;
 import coffeeshop.util.FileManager;
 
-import java.io.File;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import javafx.application.Platform;
 
 public class CoffeeShopSimulation {
     private BlockingQueue<Order> orderQueue = new PriorityBlockingQueue<>(999, (o1, o2) -> {
@@ -26,7 +22,6 @@ public class CoffeeShopSimulation {
     private List<Order> completedOrders;
     private Map<String, MenuItem> menu;
     private boolean isRunning;
-    //private ExecutorService executor;
     private List<Thread> executor;
     private DiscountManager discountManager;
     private List<SimulationObserver> observers;
@@ -54,7 +49,7 @@ public class CoffeeShopSimulation {
         if (isRunning) return;
 
         isRunning = true;
-        executor = new LinkedList<Thread>(); //Executors.newFixedThreadPool(staffCount);
+        executor = new LinkedList<Thread>();
 
         for (int i = 1; i <= staffCount; i++) {
             StaffMember staffMember = new StaffMember("Staff " + i, this);
