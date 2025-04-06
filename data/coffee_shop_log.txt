@@ -123,3 +123,9 @@
 2025-04-05 11:33:27 - Staff member Staff 2 finished working
 2025-04-05 11:33:27 - Simulation stopped
 2025-04-05 11:33:27 - Simulation report generated
+2025-04-06 14:02:18 - Applied 10.0% discount to order #1001 (3 items bundle)
+2025-04-06 14:04:55 - Applied 10.0% discount to order #1001 (3 items bundle)
+2025-04-06 14:10:20 - Applied 10.0% discount to order #1001 (3 items bundle)
+2025-04-06 14:10:51 - Applied 10.0% discount to order #1001 (3 items bundle)
+2025-04-06 14:12:06 - Applied 10.0% discount to order #1001 (3 items bundle)
+2025-04-06 14:12:06 - Applied 20.0% discount to order #1002 (Coffee + Food combo)

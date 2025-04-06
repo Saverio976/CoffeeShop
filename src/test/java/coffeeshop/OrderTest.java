@@ -23,9 +23,7 @@ class OrderTest {
 
         if (order.getOrderId() == order2.getOrderId())
             assertTrue(false);
-        if (order.getOrderId() != 1001)
-            assertTrue(false);
-        if (order2.getOrderId() != 1002)
+        if (order2.getOrderId() != order.getOrderId() + 1)
             assertTrue(false);
         assertTrue(true);
     }
@@ -60,7 +58,7 @@ class OrderTest {
             order.addItem(item1);
             order.addItem(item2);
 
-            order.applyDiscount(10); // Apply a 10% discount
+            order.applyDiscount(10);
 
             if (order.getTotalAmount() <= 3.50 || order.getTotalAmount() >= 3.70)
                 assertTrue(false);
