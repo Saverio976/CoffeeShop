@@ -33,6 +33,8 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
     private Button addOrderButton;
     private Button startSimulationButton;
     private Button stopSimulationButton;
+    private Button addStaffButton;
+    private Button removeStaffButton;
     private Spinner<Integer> staffCountSpinner;
     private Label statusLabel;
     private ProgressBar simulationProgress;
@@ -156,19 +158,21 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
         staffCountSpinner.setPrefWidth(60);
         staffCountSpinner.setEditable(true);
 
-        Button addStaffButton = createStyledButton("+", "-fx-background-color: " + PRIMARY_COLOR + ";");
+        addStaffButton = createStyledButton("+", "-fx-background-color: " + PRIMARY_COLOR + ";");
         addStaffButton.setTooltip(new Tooltip("Add staff member"));
         addStaffButton.setOnAction(e -> {
             simulation.addStaffMember();
             staffCountSpinner.getValueFactory().setValue(simulation.getStaff().size());
         });
+        addStaffButton.setDisable(true);
 
-        Button removeStaffButton = createStyledButton("-", "-fx-background-color: " + SECONDARY_COLOR + ";");
+        removeStaffButton = createStyledButton("-", "-fx-background-color: " + SECONDARY_COLOR + ";");
         removeStaffButton.setTooltip(new Tooltip("Remove staff member"));
         removeStaffButton.setOnAction(e -> {
             simulation.removeStaffMember();
             staffCountSpinner.getValueFactory().setValue(simulation.getStaff().size());
         });
+        removeStaffButton.setDisable(true);
 
         staffButtonsBox.getChildren().addAll(staffCountSpinner, addStaffButton, removeStaffButton);
         staffControls.getChildren().addAll(staffLabel, staffButtonsBox);
@@ -322,6 +326,8 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
         startSimulationButton.setDisable(true);
         stopSimulationButton.setDisable(false);
         staffCountSpinner.setDisable(true);
+        addStaffButton.setDisable(false);
+        removeStaffButton.setDisable(false);
 
         statusLabel.setText("Simulation running");
         animateProgressBar();
@@ -337,6 +343,8 @@ public class CoffeeShopFX extends Application implements SimulationObserver {
         startSimulationButton.setDisable(false);
         stopSimulationButton.setDisable(true);
         staffCountSpinner.setDisable(false);
+        addStaffButton.setDisable(true);
+        removeStaffButton.setDisable(true);
 
         statusLabel.setText("Simulation stopped");
         simulationProgress.setProgress(0);
