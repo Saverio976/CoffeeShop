@@ -10,8 +10,8 @@ class MenuItemTest {
     void createTwoSimpleMenuItems()
     {
         try {
-            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, "HOT_BEVERAGE");
-            MenuItem item2 = new MenuItem("TEA", "Tea", "Hot beverage.", 1.50, "HOT_BEVERAGE");
+            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, 1000, "HOT_BEVERAGE");
+            MenuItem item2 = new MenuItem("TEA", "Tea", "Hot beverage.", 1.50, 1000,"HOT_BEVERAGE");
 
             if (!item1.getName().equals("Coffee"))
                 assertTrue(false);

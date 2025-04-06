@@ -32,7 +32,7 @@ class OrderTest {
     {
         try {
             Order order = new Order("Frodo");
-            MenuItem item = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, "HOT_BEVERAGE");
+            MenuItem item = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, 1000,"HOT_BEVERAGE");
             order.addItem(item);
 
             if (order.getItems().size() != 1)
@@ -53,8 +53,8 @@ class OrderTest {
     {
         try {
             Order order = new Order("Frodo");
-            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, "HOT_BEVERAGE");
-            MenuItem item2 = new MenuItem("TEA", "Tea", "Hot beverage.", 1.50, "HOT_BEVERAGE");
+            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, 1000, "HOT_BEVERAGE");
+            MenuItem item2 = new MenuItem("TEA", "Tea", "Hot beverage.", 1.50, 1000, "HOT_BEVERAGE");
             order.addItem(item1);
             order.addItem(item2);
 

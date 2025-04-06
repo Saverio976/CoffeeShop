@@ -16,9 +16,9 @@ class DiscountTest {
         try {
             DiscountManager discountManager = new DiscountManager();
             Order order = new Order("Frodo");
-            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, "COFFEE");
-            MenuItem item2 = new MenuItem("TEA", "Tea", "Hot beverage.", 1.50, "COFFEE");
-            MenuItem item3 = new MenuItem("MACHIATTO", "Machiatto", "Hot beverage.", 3.00, "COFFEE");
+            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, 1000, "COFFEE");
+            MenuItem item2 = new MenuItem("TEA", "Tea", "Hot beverage.", 1.50, 1000,"COFFEE");
+            MenuItem item3 = new MenuItem("MACHIATTO", "Machiatto", "Hot beverage.", 3.00, 1000, "COFFEE");
 
             order.addItem(item1);
             order.addItem(item2);
@@ -45,8 +45,8 @@ class DiscountTest {
         try {
             DiscountManager discountManager = new DiscountManager();
             Order order = new Order("Frodo");
-            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, "COFFEE");
-            MenuItem item2 = new MenuItem("BISCUIT", "Biscuit", "cookie.", 1.50, "FOOD");
+            MenuItem item1 = new MenuItem("COFFEE", "Coffee", "Hot beverage.", 2.50, 1000, "COFFEE");
+            MenuItem item2 = new MenuItem("BISCUIT", "Biscuit", "cookie.", 1.50, 1000, "FOOD");
 
             order.addItem(item1);
             order.addItem(item2);
