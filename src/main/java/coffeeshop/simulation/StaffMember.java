@@ -1,5 +1,6 @@
 package coffeeshop.simulation;
 
+import coffeeshop.model.MenuItem;
 import coffeeshop.model.Order;
 import coffeeshop.util.FileManager;
 
@@ -18,6 +19,12 @@ public class StaffMember implements Runnable {
         this.simulation = simulation;
     }
 
+    public StaffMember(String name) {
+        this.name = name;
+        this.isWorking = true;
+        this.simulation = null;
+    }
+
     public static void setSpeedMultiplier(double multiplier) {
         speedMultiplier = multiplier;
     }
@@ -28,6 +35,10 @@ public class StaffMember implements Runnable {
         FileManager.logEvent("Staff member " + name + " started working");
 
         while (isWorking) {
+            if (simulation == null) {
+                FileManager.logEvent("Staff member " + name + " is not assigned to a simulation");
+                break;
+            }
             // Try to get an order from the queue
             currentOrder = simulation.getNextOrder();
 
@@ -51,15 +62,23 @@ public class StaffMember implements Runnable {
         FileManager.logEvent("Staff member " + name + " finished working");
     }
 
-    private void processOrder() {
+    public void setOrder(Order order) {
+        this.currentOrder = order;
+    }
+
+    public void processOrder() {
         FileManager.logEvent(name + " is processing order #" + currentOrder.getOrderId() +
                 " for customer " + currentOrder.getCustomerId());
 
-        simulation.updateStaffStatus(this, "Processing order #" + currentOrder.getOrderId());
+        if (simulation != null)
+            simulation.updateStaffStatus(this, "Processing order #" + currentOrder.getOrderId());
 
-        // Simulate time to process the order - more items take longer
-        int processingTime = (int)((2000 + (currentOrder.getItems().size() * 1000)) / speedMultiplier);
+        int processingTime = 0;
 
+        for (MenuItem item : currentOrder.getItems()) {
+            processingTime += item.getTimeTaken();
+        }
+        processingTime /= speedMultiplier;
 
         try {
             TimeUnit.MILLISECONDS.sleep(processingTime);
@@ -69,10 +88,11 @@ public class StaffMember implements Runnable {
 
         // Mark as processed
         currentOrder.setProcessed(true);
-        simulation.orderCompleted(currentOrder);
-
-        FileManager.logEvent(name + " completed order #" + currentOrder.getOrderId());
-        simulation.updateStaffStatus(this, "Available");
+        if (simulation != null) {
+            simulation.orderCompleted(currentOrder);
+            FileManager.logEvent(name + " completed order #" + currentOrder.getOrderId());
+            simulation.updateStaffStatus(this, "Available");
+        }
 
         currentOrder = null;
     }

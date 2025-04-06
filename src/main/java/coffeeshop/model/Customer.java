@@ -1,10 +1,14 @@
 package coffeeshop.model;
 
+import coffeeshop.exceptions.EmptyCustomerID;
+
 public class Customer {
     private String id;
     private Order currentOrder;
 
-    public Customer(String id) {
+    public Customer(String id) throws EmptyCustomerID {
+        if (id == null || id.isEmpty())
+            throw new EmptyCustomerID("Customer ID cannot be null or empty");
         this.id = id;
     }
 

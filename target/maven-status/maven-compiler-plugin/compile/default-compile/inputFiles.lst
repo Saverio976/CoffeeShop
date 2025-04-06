@@ -1,11 +1,13 @@
-C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\simulation\StaffMember.java
-C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\model\Order.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\CoffeeShopApplication.java
+C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\exceptions\EmptyCustomerID.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\simulation\SimulationObserver.java
-C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\ui\NewOrderDialogFX.java
+C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\exceptions\InvalidPriceException.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\util\FileManager.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\model\MenuItem.java
+C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\model\Customer.java
+C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\simulation\StaffMember.java
+C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\model\Order.java
+C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\ui\NewOrderDialogFX.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\simulation\CoffeeShopSimulation.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\simulation\DiscountManager.java
-C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\model\Customer.java
 C:\Users\benja\Desktop\CoffeeShop\src\main\java\coffeeshop\ui\CoffeeShopFX.java
