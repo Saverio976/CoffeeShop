@@ -5,12 +5,9 @@ import coffeeshop.model.Order;
 import coffeeshop.util.FileManager;
 
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import javafx.application.Platform;
 
 public class CoffeeShopSimulation {
     private BlockingQueue<Order> orderQueue = new PriorityBlockingQueue<>(999, (o1, o2) -> {
@@ -25,7 +22,7 @@ public class CoffeeShopSimulation {
     private List<Order> completedOrders;
     private Map<String, MenuItem> menu;
     private boolean isRunning;
-    private ExecutorService executor;
+    private List<Thread> executor;
     private DiscountManager discountManager;
     private List<SimulationObserver> observers;
 
@@ -52,12 +49,14 @@ public class CoffeeShopSimulation {
         if (isRunning) return;
 
         isRunning = true;
-        executor = Executors.newFixedThreadPool(staffCount);
+        executor = new LinkedList<Thread>();
 
         for (int i = 1; i <= staffCount; i++) {
             StaffMember staffMember = new StaffMember("Staff " + i, this);
             staff.add(staffMember);
-            executor.execute(staffMember);
+            Thread t = new Thread(staffMember);
+            executor.add(t);
+            t.start();
         }
 
         FileManager.logEvent("Simulation started with " + staffCount + " staff members");
@@ -73,15 +72,18 @@ public class CoffeeShopSimulation {
             staffMember.stopWorking();
         }
 
-        executor.shutdown();
-        try {
-            if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
-                executor.shutdownNow();
+        while (executor.size() != 0)
+        {
+            Thread t = executor.removeFirst();
+            try {
+                t.join(10 * 1000);
+            } catch (InterruptedException e) {
+                FileManager.logEvent(e.getMessage());
+                executor.add(t);
             }
-        } catch (InterruptedException e) {
-            executor.shutdownNow();
-            Thread.currentThread().interrupt();
         }
+
+        staff.clear();
 
         FileManager.logEvent("Simulation stopped");
         generateReport();
@@ -130,14 +132,22 @@ public class CoffeeShopSimulation {
     public synchronized void addStaffMember() {
         StaffMember staffMember = new StaffMember("Staff " + (staff.size()+1), this);
         staff.add(staffMember);
-        executor.execute(staffMember);
+        Thread t = new Thread(staffMember);
+        executor.add(t);
+        t.start();
         FileManager.logEvent("Added staff member: " + staffMember.getName());
     }
 
     public synchronized void removeStaffMember() {
         if (!staff.isEmpty()) {
-            StaffMember member = staff.remove(staff.size()-1);
+            StaffMember member = staff.removeLast();
             member.stopWorking();
+            Thread t = executor.removeLast();
+            try {
+                t.join(10 * 1000);
+            } catch (InterruptedException e) {
+                FileManager.logEvent(e.getMessage());
+            }
             FileManager.logEvent("Removed staff member: " + member.getName());
         }
     }
