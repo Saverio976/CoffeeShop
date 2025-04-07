@@ -1,10 +1,14 @@
 # COFFEESHOP
 
+## Members
+
+Abdulazeez Adamu | Benjamin Bourge | Rupesh Pandey | Shelter Effiong Orok | Xavier Mitault
+
+## Compile
+
 You can compile the prject or use the compiled [CoffeeShop-1.0.jar](./CoffeeShop-1.0.jar) file provided.
 
 We are using [maven](https://maven.apache.org/install.html).
-
-## Compile
 
 ```
 mvn package
