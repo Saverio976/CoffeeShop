@@ -33,3 +33,5 @@ apache-maven-3.9.9
 .idea
 
 target/*
+data/*
+!data/.gitkeep
