@@ -1,10 +1,10 @@
 # COFFEESHOP
 
-## Compile
-
 You can compile the prject or use the compiled [CoffeeShop-1.0.jar](./CoffeeShop-1.0.jar) file provided.
 
 We are using [maven](https://maven.apache.org/install.html).
+
+## Compile
 
 ```
 mvn package
@@ -16,6 +16,12 @@ mvn package
 java -jar ./target/CoffeeShop-1.0-SNAPSHOT.jar
 # or, if you want to use the provided jar file:
 java -jar ./CoffeeShop-1.0.jar
+```
+
+## Tests
+
+```
+mvn test
 ```
 
 ## Config files
