@@ -31,3 +31,13 @@ This file is added in the jar file. If you modify it, you need to compile the pr
 [orders.csv](./src/main/resources/data/orders.csv)
 
 This file is added in the jar file. If you modify it, you need to compile the project again.
+
+## Output files
+
+### Log
+
+[coffee_shop_log.txt](./data/coffee_shop_log.txt)
+
+### Coffee Shop Report
+
+[coffee_shop_report.txt](./data/coffee_shop_report.txt)
